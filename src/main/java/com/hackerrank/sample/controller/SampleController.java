@@ -1,16 +1,11 @@
 package com.hackerrank.sample.controller;
 
-import com.hackerrank.sample.dao.Weather;
+import com.hackerrank.sample.service.Weather;
 import com.hackerrank.sample.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/weather")
@@ -26,7 +21,7 @@ public class SampleController {
     }
 
     @GetMapping(value = "/select/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getWeatherById(@PathVariable String id) {
+    public ResponseEntity<?> getWeatherById(@PathVariable Long id) {
 
         return ResponseEntity.ok().body(weatherService.findById(id));
 
@@ -39,7 +34,7 @@ public class SampleController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable String id) {
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         weatherService.deleteById(id);
         return ResponseEntity.ok().body(id);
 

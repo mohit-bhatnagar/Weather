@@ -1,22 +1,30 @@
-package com.hackerrank.sample.dao;
+package com.hackerrank.sample.service;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="weather")
     public class Weather implements Serializable {
         private static final long serialVersionUID = 3780748293761465843L;
 
+    public Weather() {
+    }
+
+    public Weather(String city, Long date, String temperature, long modificationTs) {
+        this.city = city;
+        this.date = date;
+        this.temperature = temperature;
+        this.modificationTs = modificationTs;
+    }
+
+
+
         @Id
         @Column(name="id")
-        private String id;
+        @GeneratedValue(strategy = GenerationType.AUTO)
+
+        private Long id;
 
         @Column(name="city")
         private String city;
@@ -31,5 +39,4 @@ import javax.persistence.Table;
         private long modificationTs;
 
 
-
-    }
+}
